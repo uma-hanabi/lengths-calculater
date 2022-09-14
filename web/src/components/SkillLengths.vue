@@ -5,45 +5,49 @@
     <p class="text-xl font-semibold mb-8">目前總共 {{ items.length }} 個技能</p>
   </header>
 
-  <main class="mt-3">
-    <label for="total_skill_pt">擁有PT: </label>
-    <input id="total_skill_pt" type="text" placeholder="Add total skill points" autofocus ref="addskill" v-model="totalSkillPoint"
-      v-on:input="totalSkillPoint=onlyNumber(totalSkillPoint)"
-      class="bg-gray-200 focus:bg-white border-black border-solid border-2 px-2 py-1 w-full mb-4 hover:bg-white"
-    />
-    <form @submit.prevent="addItem">
-      <label for="skill_name">技能名稱: </label>
-      <input id="skill_name" type="text" placeholder="Add skill name" autofocus ref="addskill" v-model="skillName"
-        class="bg-gray-200 focus:bg-white border-black border-solid border-2 px-2 py-1 w-full mb-4 hover:bg-white"
-      />
-      <label for="skill_cost">技能PT: </label>
-      <input id="skill_cost" type="text" placeholder="Add skill cost" autofocus ref="addskill" v-model="skillCost"
-        v-on:input="skillCost=onlyNumber(skillCost)"
-        class="bg-gray-200 focus:bg-white border-black border-solid border-2 px-2 py-1 w-full mb-4 hover:bg-white"
-      />
-      <label for="skill_lengths">馬身身距: </label>
-      <input id="skill_lengths" type="text" placeholder="Add skill lengths" autofocus ref="addskill" v-model="skillLengths"
-        v-on:input="skillLengths=onlyNumber(skillLengths)"
-        class="bg-gray-200 focus:bg-white border-black border-solid border-2 px-2 py-1 w-full mb-4 hover:bg-white"
-      />
-
-      <button class="button">新增</button>
-    </form>
-    <div class="t">
-    <button class="submitButton" v-on:click="calculateLengths()">計算</button>
+  <main class="elform">
+    <el-form class="elform" ref="form" label-width="auto" >
+        <el-form-item class="elform" label="總共擁有的PT點">
+          <el-input id="total_skill_pt" type="text" placeholder="Add total skill points" autofocus ref="addskill" v-model="totalSkillPoint"
+            @input="totalSkillPoint=onlyNumber(totalSkillPoint)"
+            class="elform"
+          />
+        </el-form-item>
+        <el-form-item label="技能名稱">
+          <el-input id="skill_name" type="text" placeholder="Add skill name" autofocus ref="addskill" v-model="skillName"
+          class="elform"
+        />
+        </el-form-item>
+        <el-form-item label="技能消耗PT">
+          <el-input id="skill_cost" type="text" placeholder="Add skill cost" autofocus ref="addskill" v-model="skillCost"
+            @input="skillCost=onlyNumber(skillCost)"
+            class="elform"
+          />
+        </el-form-item>
+        <el-form-item label="技能身距">
+          <el-input id="skill_cost" type="text" placeholder="Add skill lengths" autofocus ref="addskill" v-model="skillLengths"
+            @input="skillLengths=onlyNumber(skillLengths)"
+            class="elform"
+          />
+        </el-form-item>
+    </el-form>
+    <div>
+      <el-button style="width:100px;height:30px;" class="button" @click="addItem">新增</el-button>
+      <el-button style="width:100px;height:30px;" class="submitButton" v-on:click="calculateLengths()">計算</el-button>
     </div>
 
     <ul class="max-w-xs">
       <span v-if="items.length > 0" >目前技能</span>
       <li v-for="(item, index) in items" class="my-4 flex items-left justify-end" :key='index'>
         <span v-if="! item.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black" @click="enableEdit(index)">{{ item.title }},</span>
-        <input v-else type="text" v-model="item.title" :ref="'skill'" @keyup.enter="disableEdit(index)" @blur="disableEdit(index)" class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white">
+        <input v-else type="text" v-model="item.title" :ref="'skill'" @keyup.enter="disableEdit(index)"  class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white">
         <span v-if="! item.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black" @click="enableEdit(index)">{{ item.cost }},</span>
-        <input v-else type="text" v-model="item.cost" :ref="'skill'" @keyup.enter="disableEdit(index)" @blur="disableEdit(index)" class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white">
+        <input v-else type="text" v-on:input="item.cost=onlyNumber(item.cost)" v-model="item.cost" :ref="'skill'" @keyup.enter="disableEdit(index)"  class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white">
         <span v-if="! item.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black" @click="enableEdit(index)">{{ item.lengths }}</span>
-        <input v-else type="text" v-model="item.lengths" :ref="'skill'" @keyup.enter="disableEdit(index)" @blur="disableEdit(index)" class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white">
-        <button class="button" @click="enableEdit(index)">編輯</button>
-        <button class="button" @click="removeItem(index)">刪除</button>
+        <input v-else type="text" v-on:input="item.lengths=onlyNumber(item.lengths)" v-model="item.lengths" :ref="'skill'" @keyup.enter="disableEdit(index)"  class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white">
+        <el-button v-if="! item.edit" class="button" @click="enableEdit(index)">編輯</el-button>
+        <el-button v-else class="button" @click="disableEdit(index)">更新</el-button>
+        <el-button class="button" @click="removeItem(index)">刪除</el-button>
       </li>
     </ul>
 
@@ -204,7 +208,6 @@ export default {
 .button {
     background-color: #fff;
     border-radius: 5px;
-    color: black;
     padding: 3px 4px;
     text-align: center;
     text-decoration: none;
@@ -227,6 +230,13 @@ export default {
 .submitButton:hover {
     background-color: #f44336; /* Green */
     color: white;
+}
+.elform {
+    display: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 2px 3px;
+    text-align: center;
 }
 h3 {
   margin: 40px 0 0;
