@@ -3,7 +3,7 @@
 
   <main class="elform">
     <el-form class="elform" ref="form" label-width="auto" >
-        <el-form-item class="elform" label="總共擁有的PT點">
+        <el-form-item class="elform" label="持有PT">
           <el-input id="total_skill_pt" type="text" placeholder="Add total skill points" autofocus ref="addskill" v-model="totalSkillPoint"
             @input="totalSkillPoint=onlyNumber(totalSkillPoint)"
             class="elform"

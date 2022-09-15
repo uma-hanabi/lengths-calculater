@@ -1,0 +1,26 @@
+{
+    "Taurus": [
+        {
+            "name": "test1",
+            "cost": 100,
+            "lengths": 1.2
+        },
+        {
+            "name": "test2",
+            "cost": 101,
+            "lengths": 1.3
+        },
+        {
+            "name": "test3",
+            "cost": 102,
+            "lengths": 1.4
+        }
+    ],
+    "Gemini": [
+        {
+            "name": "暫無數據",
+            "cost": 0,
+            "lengths": 0
+        }
+    ]
+}

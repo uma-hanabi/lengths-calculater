@@ -3,15 +3,20 @@
   
   <main class="mt-3">
     <el-form class="elform" ref="form" label-width="auto" >
-        <el-form-item class="elform" label="總PT">
+        <el-form-item label="杯賽">
+            <el-select v-model="currentChampionship" style="width:100%;" collapse-tags placeholder="choose champtionship meeting" filterable @input="syncSkillList(currentChampionship)">
+                <el-option v-for="item in champtionshipList" :value="item.key" :key="item.key" :label="item.zhtw"/>
+            </el-select>
+        </el-form-item>
+        <el-form-item label="持有PT">
           <el-input id="total_skill_pt" type="text" placeholder="Add total skill points" autofocus ref="addskill" v-model="totalSkillPoint"
             @input="totalSkillPoint=onlyNumber(totalSkillPoint)"
             class="elform"
           />
         </el-form-item>
         <el-form-item label="技能名稱">
-            <el-select v-model="skillName" style="width:100%;" collapse-tags placeholder="choose skill" filterable @input="sync(skillName)">
-                <el-option v-for="item in skillListShow" :value="item.name" :key="item.name" :label="item.name"/>
+            <el-select v-model="skillName" style="width:100%;" collapse-tags placeholder="choose skill" filterable @input="syncSkillInfo(skillName)">
+                <el-option v-for="item in skillListAll" :value="item.name" :key="item.name" :label="item.name"/>
             </el-select>
         </el-form-item>
         <el-form-item label="技能折扣(%)">
@@ -67,10 +72,13 @@
 </template>
 
 <script>
+import skills from './data/championshipToSkillMap2022.json'
+import championshipZhTwMap from './data/championshipZhTW.json'
 export default {
   name: 'NewSkillLengths',
   data() {
     return {
+      currentChampionship: "Taurus",
       totalSkillPoint: "",
       skillName: "",
       skillCost: 0,
@@ -81,11 +89,14 @@ export default {
       maxLengths: 0,
       isError: false,
       dropdownValue: "",
-      skillDict: {"test1": {"name":"test1", "cost":100, "lengths": 1.2}, "test2":{"name":"test2", "cost":101, "lengths": 1.3}, "test3": {"name":"test3", "cost":102, "lengths": 1.4}},
-      skillListAll: [{"name":"test1", "cost":100, "lengths": 1.2}, {"name":"test2", "cost":101, "lengths": 1.3}, {"name":"test3", "cost":102, "lengths": 1.4}],
-      skillListShow: [{"name":"test1", "cost":100, "lengths": 1.2}, {"name":"test2", "cost":101, "lengths": 1.3}, {"name":"test3", "cost":102, "lengths": 1.4}],
+      skillDict: {},
+      skillListAll: [],
+      champtionshipList: championshipZhTwMap,
       skillDiscountList: [0, 10, 20, 30, 35, 40]
     };
+  },
+  mounted() {
+    this.syncSkillList(this.currentChampionship)
   },
   methods: {
     addItem: function() {
@@ -202,19 +213,26 @@ export default {
     setSkillCount: function() {
       this.$emit("getSkillCount", this.items.length);
     },
-    dropdownSearch: function() {
-        let _this = this;
-        _this.skillNameMeta = [];
-        _this.skillListShow = _this.skillListAll.filter(_this.filterSearch);
-    },
     filterSearch: function(item) {
         console.log(this.dropdownValue);
         return item.includes(this.dropdownValue);
     },
-    sync: function(skillName) {
+    syncSkillInfo: function(skillName) {
         this.skillCost = this.skillDict[skillName]["cost"]
         this.skillLengths = this.skillDict[skillName]["lengths"]
         this.skillDiscount = 0
+    },
+    syncSkillList: function(champtionship) {
+        let tmpSkillMap = {}
+        this.skillListAll = skills[champtionship]
+        this.skillListAll.forEach( function (item)  {
+          tmpSkillMap[item.name] = {
+            "cost": item.cost,
+            "lengths": item.lengths
+          }
+        });
+        console.log(tmpSkillMap)
+        this.skillDict = tmpSkillMap
     },
     updateSkillCost: function() {
         this.skillCost = this.skillCost - this.skillCost*this.skillDiscount/100

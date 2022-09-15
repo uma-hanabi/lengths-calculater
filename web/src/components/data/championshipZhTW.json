@@ -1,0 +1,50 @@
+[
+    {
+        "key": "Aries",
+        "zhtw": "牡羊杯"
+    },
+    {
+        "key": "Taurus",
+        "zhtw": "金牛杯"
+    },
+    {
+        "key": "Gemini",
+        "zhtw": "雙子杯"
+    },
+    {
+        "key": "Cancer",
+        "zhtw": "巨蟹杯"
+    },
+    {
+        "key": "Leo",
+        "zhtw": "獅子杯"
+    },
+    {
+        "key": "Virgo",
+        "zhtw": "處女杯"
+    },
+    {
+        "key": "Libra",
+        "zhtw": "天秤杯"
+    },
+    {
+        "key": "Scorpio",
+        "zhtw": "天蠍杯"
+    },
+    {
+        "key": "Sagittarius",
+        "zhtw": "射手杯"
+    },
+    {
+        "key": "Capricorn",
+        "zhtw": "摩羯杯"
+    },
+    {
+        "key": "Aquarius",
+        "zhtw": "水瓶杯"
+    },
+    {
+        "key": "Pisces",
+        "zhtw": "雙魚杯"
+    }
+]
