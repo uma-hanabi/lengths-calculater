@@ -1,30 +1,30 @@
 <template>
   <div id="app" v-cloak class="container mx-auto flex items-center flex-col mt-10">
-
-  <main class="elform">
+  
+  <main class="mt-3">
     <el-form class="elform" ref="form" label-width="auto" >
-        <el-form-item class="elform" label="總共擁有的PT點">
+        <el-form-item class="elform" label="總PT">
           <el-input id="total_skill_pt" type="text" placeholder="Add total skill points" autofocus ref="addskill" v-model="totalSkillPoint"
             @input="totalSkillPoint=onlyNumber(totalSkillPoint)"
             class="elform"
           />
         </el-form-item>
         <el-form-item label="技能名稱">
-          <el-input id="skill_name" type="text" placeholder="Add skill name" autofocus ref="addskill" v-model="skillName"
-          class="elform"
-        />
+            <el-select v-model="skillName" style="width:100%;" collapse-tags placeholder="choose skill" filterable @input="sync(skillName)">
+                <el-option v-for="item in skillListShow" :value="item.name" :key="item.name" :label="item.name"/>
+            </el-select>
+        </el-form-item>
+        <el-form-item label="技能折扣(%)">
+            <el-select v-model="skillDiscount" style="width:100%;" collapse-tags placeholder="choose skill discount" filterable @input="updateSkillCost()">
+                <el-option v-for="item in skillDiscountList" :value="item" :key="item"/>
+            </el-select>
         </el-form-item>
         <el-form-item label="技能消耗PT">
-          <el-input id="skill_cost" type="text" placeholder="Add skill cost" autofocus ref="addskill" v-model="skillCost"
-            @input="skillCost=onlyNumber(skillCost)"
-            class="elform"
-          />
+          <span v-if="skillName != ''" class="el-form-item__content">{{ skillCost }}</span>
+          <span v-else class="el-form-item__content">{{ skillCost }}</span>
         </el-form-item>
         <el-form-item label="技能身距">
-          <el-input id="skill_cost" type="text" placeholder="Add skill lengths" autofocus ref="addskill" v-model="skillLengths"
-            @input="skillLengths=onlyNumber(skillLengths)"
-            class="elform"
-          />
+          <span class="el-form-item__content">{{ skillLengths }}</span>
         </el-form-item>
     </el-form>
     <div>
@@ -68,17 +68,23 @@
 
 <script>
 export default {
-  name: 'SkillLengths',
+  name: 'NewSkillLengths',
   data() {
     return {
       totalSkillPoint: "",
       skillName: "",
-      skillCost: "",
-      skillLengths: "",
+      skillCost: 0,
+      skillLengths: 0,
+      skillDiscount: 0,
       items: [],
       result: [],
       maxLengths: 0,
-      isError: false
+      isError: false,
+      dropdownValue: "",
+      skillDict: {"test1": {"name":"test1", "cost":100, "lengths": 1.2}, "test2":{"name":"test2", "cost":101, "lengths": 1.3}, "test3": {"name":"test3", "cost":102, "lengths": 1.4}},
+      skillListAll: [{"name":"test1", "cost":100, "lengths": 1.2}, {"name":"test2", "cost":101, "lengths": 1.3}, {"name":"test3", "cost":102, "lengths": 1.4}],
+      skillListShow: [{"name":"test1", "cost":100, "lengths": 1.2}, {"name":"test2", "cost":101, "lengths": 1.3}, {"name":"test3", "cost":102, "lengths": 1.4}],
+      skillDiscountList: [0, 10, 20, 30, 35, 40]
     };
   },
   methods: {
@@ -195,6 +201,23 @@ export default {
     },
     setSkillCount: function() {
       this.$emit("getSkillCount", this.items.length);
+    },
+    dropdownSearch: function() {
+        let _this = this;
+        _this.skillNameMeta = [];
+        _this.skillListShow = _this.skillListAll.filter(_this.filterSearch);
+    },
+    filterSearch: function(item) {
+        console.log(this.dropdownValue);
+        return item.includes(this.dropdownValue);
+    },
+    sync: function(skillName) {
+        this.skillCost = this.skillDict[skillName]["cost"]
+        this.skillLengths = this.skillDict[skillName]["lengths"]
+        this.skillDiscount = 0
+    },
+    updateSkillCost: function() {
+        this.skillCost = this.skillCost - this.skillCost*this.skillDiscount/100
     }
   }
 }
@@ -229,11 +252,11 @@ export default {
     color: white;
 }
 .elform {
-    display: center;
-    align-items: center;
+    display: left;
+    align-items: left;
     border-radius: 5px;
     padding: 2px 3px;
-    text-align: center;
+    text-align: left;
 }
 h3 {
   margin: 40px 0 0;

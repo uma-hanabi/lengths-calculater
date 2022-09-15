@@ -1,16 +1,29 @@
 <template>
   <div id="app">
-    <SkillLengths/>
+    <TopBlock :skillCount="skillCounts"/>
+    <PageTab @getSkillCount="getSkillCountFromChild"/>
   </div>
 </template>
 
 <script>
-import SkillLengths from './components/SkillLengths.vue'
+import PageTab from './components/PageTab.vue'
+import TopBlock from './components/TopBlock.vue'
 
 export default {
   name: 'App',
   components: {
-    SkillLengths
+    PageTab,
+    TopBlock
+  },
+  data() {
+    return {
+      skillCounts: 0
+    }
+  },
+  methods: {
+    getSkillCountFromChild: function(val) {
+      this.skillCounts = val;
+    }
   }
 }
 </script>
