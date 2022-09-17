@@ -104,6 +104,7 @@ export default {
       currentChampionship: "Taurus",
       totalSkillPoint: "",
       skillName: "",
+      upperSkillName: "",
       skillCost: 0,
       preSkillCost: 0,
       skillCostShow: 0,
@@ -153,6 +154,10 @@ export default {
       }
       if (this.itemExist(skillName) === true) {
         this.showAlert("無法新增重複技能")
+        return false;
+      }
+      if (this.itemExist(this.upperSkillName) === true) {
+        this.showAlert("已存在上位技能: " + this.upperSkillName)
         return false;
       }
 
@@ -295,7 +300,7 @@ export default {
           try {
             Object.entries(skills).map(items => {
             items.forEach( function(item, index) {
-              //console.log(item)
+              console.log(item)
               if (index != 0) {
                 mainSkillCost = mainSkillCost + item.cost
                 if (item.preSkill === true) {
@@ -304,6 +309,7 @@ export default {
                 } else {
                   that.skillHasPreSkill = false
                 }
+                that.upperSkillName = item.upperSkillName
                 lengths = lengths + item.lengths
               }
             })
@@ -343,7 +349,10 @@ export default {
                 "cost": skill.cost,
                 "lengths": skill.lengths[runStyle],
                 "preSkill": skill.preSkill,
-                "preSkillCost": skill.preSkillCost
+                "preSkillName": skill.preSkillName,
+                "preSkillCost": skill.preSkillCost,
+                "upperSkill": skill.upperSkill,
+                "upperSkillName": skill.upperSkillName
               }
               //console.log(tmpSkill)
               tmpSkills.push(tmpSkill)

@@ -890,7 +890,7 @@
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
-                    "upperSkill": false,
+                    "upperSkill": true,
                     "upperSkillName": "弧線的教授"
                 }
             ]
