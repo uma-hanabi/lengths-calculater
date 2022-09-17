@@ -27,7 +27,6 @@
         <el-form-item label="持有PT">
           <el-input id="total_skill_pt" type="text" placeholder="Add total skill points" autofocus ref="addskill" v-model="totalSkillPoint"
             @input="totalSkillPoint=onlyNumber(totalSkillPoint)"
-            class="elform"
           />
         </el-form-item>
         <el-form-item label="技能名稱">
@@ -35,8 +34,13 @@
                 <el-option v-for="item in skillListShow" :value="item.name" :key="item.name" :label="item.name"/>
             </el-select>
         </el-form-item>
-        <el-form-item label="技能折扣(%)">
-            <el-select v-model="skillDiscount" style="width:100%;" collapse-tags placeholder="choose skill discount" filterable @input="updateSkillCost()">
+        <el-form-item :style="skillHasPreSkill==true?'display: inline-block;width:50%':'width:100%'" label="技能折扣(%)">
+            <el-select v-model="skillDiscount" style="width:100%;" collapse-tags placeholder="choose skill discount" @input="updateSkillCost()">
+                <el-option v-for="item in skillDiscountList" :value="item" :key="item"/>
+            </el-select>
+        </el-form-item>
+        <el-form-item style="display: inline-block;width:50%;" v-if="skillHasPreSkill==true" label="前置折扣(%)">
+            <el-select v-model="preSkillDiscount" style="width:100%;" collapse-tags placeholder="choose skill discount" @input="updateSkillCost()">
                 <el-option v-for="item in skillDiscountList" :value="item" :key="item"/>
             </el-select>
         </el-form-item>
@@ -76,8 +80,6 @@
         <span class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ item.lengths }}</span>
       </li>
     </ul>
-
-    <p class="error px-2 py-1 rounded" v-if="isError">☝This skill already exists.</p>
   </main>
 
   <div class="flex items-center bg-blue-500 text-white text-sm font-bold px-4 py-3 mt-12" role="alert">
@@ -94,6 +96,7 @@ export default {
   name: 'NewSkillLengths',
   data() {
     return {
+      skillHasPreSkill: false,
       alertMessage: "",
       showDismissibleAlert: false,
       picked: true,
@@ -102,16 +105,14 @@ export default {
       totalSkillPoint: "",
       skillName: "",
       skillCost: 0,
-      skillCostShow: 0,
       preSkillCost: 0,
+      skillCostShow: 0,
       skillLengths: 0,
       skillDiscount: 0,
       preSkillDiscount: 0,
       items: [],
       result: [],
       maxLengths: 0,
-      isError: false,
-      dropdownValue: "",
       skillDict: {},
       skillsOrigin: skills,
       skillListShow: [],
@@ -151,7 +152,7 @@ export default {
         return false;
       }
       if (this.itemExist(skillName) === true) {
-        this.isError = true;
+        this.showAlert("無法新增重複技能")
         return false;
       }
 
@@ -162,12 +163,11 @@ export default {
           //console.log(skillInfo)
           skillInfo.forEach( function(item, index) {
             if (index != 0) {
-              //console.log(skillInfo[0])
-              //console.log(item.cost)
-              //console.log(item.lengths)
+              var mainSkillCost = that.calculateCost(item.cost, that.skillDiscount)
+              var preSkillCost = that.calculateCost(item.preSkillCost, that.preSkillDiscount)
               calculatedItemList.push({
                 name: skillInfo[0],
-                cost: that.calculateCost(item.cost, that.skillDiscount),
+                cost: mainSkillCost + preSkillCost,
                 lengths: item.lengths,
                 edit: false
               });
@@ -179,15 +179,8 @@ export default {
         }
       });
       this.items = calculatedItemList
-      // this.items.push({
-      //   name: skillName,
-      //   cost: skillCost,
-      //   lengths: skillLengths,
-      //   edit: false
-      // });
-
+      this.hideAlert()
       this.resetSkillInfo()
-      this.isError = false;
       this.setSkillCount()
     },
     removeItem: function(index) {
@@ -261,6 +254,10 @@ export default {
         that.showAlert("請輸入持有PT")
         return false;
       }
+      if (items.length == 0) {
+        that.showAlert("請至少新增 1 個技能")
+        return false;
+      }
       this.hideAlert()
       // Filling the sub-problem solutions grid.
       for (var i = 0; i < items.length; i++) {
@@ -285,15 +282,12 @@ export default {
     setSkillCount: function() {
       this.$emit("getSkillCount", this.items.length);
     },
-    filterSearch: function(item) {
-        //console.log(this.dropdownValue);
-        return item.includes(this.dropdownValue);
-    },
     syncSkillInfo: function(skillName) {
-        var cost = 0
+        var mainSkillCost = 0
+        var preSkillCost = 0
         var lengths = 0
         let that = this
-        if (this.runStyle == "" ) {
+        if (that.runStyle == "" ) {
           that.showAlert("請先選擇腳質")
           return
         }
@@ -301,8 +295,15 @@ export default {
           try {
             Object.entries(skills).map(items => {
             items.forEach( function(item, index) {
+              //console.log(item)
               if (index != 0) {
-                cost = cost + item.cost
+                mainSkillCost = mainSkillCost + item.cost
+                if (item.preSkill === true) {
+                  that.skillHasPreSkill = true
+                  preSkillCost = preSkillCost + item.preSkillCost
+                } else {
+                  that.skillHasPreSkill = false
+                }
                 lengths = lengths + item.lengths
               }
             })
@@ -311,15 +312,10 @@ export default {
             //console.log(error)
           }
         });
-        this.skillCost = cost
-        this.skillCostShow = this.skillCost
-        //this.skillCost = this.skillDict[skillName]["cost"]
-        // this.skillDict[skillName].forEach( function(item) {
-        //   //console.log(item)
-        //   //this.skillLengths += item.lengths
-        // });
-        //this.skillLengths = this.skillDict[skillName]["lengths"]
-        this.skillLengths = lengths
+        this.skillCost = mainSkillCost
+        this.preSkillCost = preSkillCost
+        this.skillCostShow = mainSkillCost + preSkillCost
+        this.skillLengths = parseFloat(lengths).toFixed(2)
         this.skillDiscount = 0
     },
     resetSkillInfo: function() {
@@ -328,12 +324,12 @@ export default {
         this.skillCostShow = 0
         this.skillLengths = 0
         this.skillDiscount = 0
+        this.skillHasPreSkill = false
     },
     syncSkillList: function(champtionship) {
         let tmpSkillMap = {}
         let runStyle = this.runStyle
         let skillListAll = JSON.parse( JSON.stringify(skills[champtionship]) );
-        let skillListShow = JSON.parse( JSON.stringify(skills[champtionship]) );
         skillListAll.forEach( function (item)  {
           let tmpSkills = []
           //console.log(item)
@@ -345,7 +341,9 @@ export default {
             if (lengths > 0) {
                 tmpSkill[name] = {
                 "cost": skill.cost,
-                "lengths": skill.lengths[runStyle]
+                "lengths": skill.lengths[runStyle],
+                "preSkill": skill.preSkill,
+                "preSkillCost": skill.preSkillCost
               }
               //console.log(tmpSkill)
               tmpSkills.push(tmpSkill)
@@ -356,21 +354,26 @@ export default {
         });
         //console.log(tmpSkillMap)
         this.skillDict = tmpSkillMap
-        this.skillListShow = skillListShow.map( function(item) {
+        this.skillListShow = skillListAll.filter( function(item) {
           let add = true
-          //console.log(item)
-          // item.info.forEach( function(ss) {
-          //   //console.log(ss.lengths[runStyle])
-          //   if (ss.lengths[runStyle] == 0) {
-          //     add = false
-          //   }
-          // })
+          try {
+            item.info.forEach( function(ss) {
+              //console.log(ss.lengths[runStyle])
+              if (ss.lengths[runStyle] == 0) {
+                add = false
+              }
+            })
+          } catch (error) {
+            //console.log(error)
+          }
           if (add === true) {
+            //console.log(item.name + " will be add")
             return {
               ...item
             }
           }
         })
+        //console.log(this.skillListShow)
     },
     syncRunStyle: function(value, currentBtn) {
       this.hideAlert()
@@ -405,7 +408,11 @@ export default {
       }
     },
     updateSkillCost: function() {
-        this.skillCostShow = this.calculateCost(this.skillCost, this.skillDiscount)
+      var mainSkillCost = this.calculateCost(this.skillCost, this.skillDiscount)
+      var preSkillCost = this.calculateCost(this.preSkillCost, this.preSkillDiscount)
+      //console.log(mainSkillCost)
+      //console.log(preSkillCost)
+      this.skillCostShow = mainSkillCost + preSkillCost
         
     },
     calculateCost: function(cost, discount) {
