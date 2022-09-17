@@ -1,6 +1,8 @@
 <template>
   <div id="app" v-cloak class="container mx-auto flex items-center flex-col mt-10">
-  
+  <b-alert v-model="showDismissibleAlert" variant="danger">
+    {{ alertMessage }}
+  </b-alert>
   <main class="mt-3">
     <el-form class="elform" ref="form" label-width="auto" >
         <el-form-item label="杯賽">
@@ -92,6 +94,8 @@ export default {
   name: 'NewSkillLengths',
   data() {
     return {
+      alertMessage: "",
+      showDismissibleAlert: false,
       picked: true,
       runStyle: "",
       currentChampionship: "Taurus",
@@ -123,6 +127,20 @@ export default {
     this.syncSkillList(this.currentChampionship)
   },
   methods: {
+    syncTotalPT: function(pt) {
+      let that = this
+      if (pt != "") {
+        that.hideAlert()
+      }
+    },
+    showAlert: function(msg) {
+      this.alertMessage = msg
+      this.showDismissibleAlert = true
+    },
+    hideAlert: function() {
+      this.alertMessage = ""
+      this.showDismissibleAlert = false
+    },
     addItem: function() {
       let that = this
       var skillName = this.skillName
@@ -235,12 +253,15 @@ export default {
         }
     },
     calculateLengths: function() {
+      let that = this
       var memo = [];
       var items = this.items
       var capacity = this.totalSkillPoint
       if (capacity == "") {
+        that.showAlert("請輸入持有PT")
         return false;
       }
+      this.hideAlert()
       // Filling the sub-problem solutions grid.
       for (var i = 0; i < items.length; i++) {
         // Variable 'cap' is the capacity for sub-problems. In this example, 'cap' ranges from 1 to 6.
@@ -257,7 +278,9 @@ export default {
       this.maxLengths = result['maxValue'];
     },
     onlyNumber: function(value) {
-      return value.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')
+      var num = value.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')
+      this.syncTotalPT(num)
+      return num
     },
     setSkillCount: function() {
       this.$emit("getSkillCount", this.items.length);
@@ -269,8 +292,9 @@ export default {
     syncSkillInfo: function(skillName) {
         var cost = 0
         var lengths = 0
+        let that = this
         if (this.runStyle == "" ) {
-          console.log("please select run style first")
+          that.showAlert("請先選擇腳質")
           return
         }
         this.skillDict[skillName].forEach( function(skills) {
@@ -349,6 +373,7 @@ export default {
         })
     },
     syncRunStyle: function(value, currentBtn) {
+      this.hideAlert()
       this.runStyle = value;
       this.resetSkillInfo()
       this.syncSkillList(this.currentChampionship)
