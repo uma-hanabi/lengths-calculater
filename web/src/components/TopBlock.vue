@@ -1,5 +1,6 @@
 <template>
   <div id="app" v-cloak class="container mx-auto flex items-center flex-col mt-10">
+    <span style="text-left">版本:v0.4.1</span>
     <header class="text-center">
         <h1 class="text-5xl font-black">最大身距計算</h1>
         <p class="text-xl font-semibold mb-8">目前總共 {{ skillCount }} 個技能</p>

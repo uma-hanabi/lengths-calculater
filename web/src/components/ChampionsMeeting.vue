@@ -56,8 +56,62 @@
       <el-button style="width:100px;height:30px;" class="button" @click="addItem">新增</el-button>
       <el-button style="width:100px;height:30px;" class="submitButton" v-on:click="calculateLengths()">計算</el-button>
     </div>
-
-    <ul class="max-w-xs">
+    <br/>
+    <hr v-if="items.length > 0"/>
+    <span v-if="items.length > 0">目前技能</span>
+    <div>
+      <el-table v-if="items.length > 0" :data="items" style="display: inline-block;width:100%;" class="table_bsm" label="123">
+        <span v-if="items.length > 0" >目前技能</span>
+        <el-table-column prop="name" label="技能名稱">
+          <template slot-scope="scope">
+            <span v-if="! scope.row.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ scope.row.name }}</span>
+            <input v-else type="text" v-model="scope.row.name" :ref="'skill'"  class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white"/>
+          </template>
+        </el-table-column>
+        <el-table-column prop="cost" label="技能PT" style="width:5%">
+          <template slot-scope="scope">
+            <span v-if="! scope.row.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ scope.row.cost }}</span>
+            <input v-else type="text" v-model="scope.row.cost" :ref="'skill'"  class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white"/>
+          </template>
+        </el-table-column>
+        <el-table-column prop="lengths" label="技能身距" style="width:5%">
+          <template slot-scope="scope">
+            <span v-if="! scope.row.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ scope.row.lengths }}</span>
+            <input v-else type="text" v-model="scope.row.lengths" :ref="'skill'"  class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white"/>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" style="width:10%">
+          <template slot-scope="scope">
+            <el-button v-if="! scope.row.edit" class="button" @click="enableEdit(scope.$index)">編輯</el-button>
+            <el-button v-else class="button" @click="disableEdit(scope.$index)">更新</el-button>
+            <el-button class="button" @click="removeItem(scope.$index)">刪除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+    <br/>
+    <hr v-if="items.length > 0"/>
+    <span v-if="result.length > 0">最大馬身技能({{ maxLengths }})</span>
+    <div>
+      <el-table v-if="result.length > 0" :data="result" style="display: inline-block;width:100%;" class="table_bsm">
+        <el-table-column prop="name" label="技能名稱">
+          <template slot-scope="scope">
+            <span class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ scope.row.name }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="cost" label="技能PT" style="width:5%">
+          <template slot-scope="scope">
+            <span class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ scope.row.cost }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="lengths" label="技能身距" style="width:5%">
+          <template slot-scope="scope">
+            <span class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ scope.row.lengths }}</span>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+    <!-- <ul class="max-w-xs">
       <span v-if="items.length > 0" >目前技能</span>
       <li v-for="(item, index) in items" class="my-4 flex items-left justify-end" :key='index'>
         <span v-if="! item.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black" @click="enableEdit(index)">{{ item.name }},</span>
@@ -79,7 +133,7 @@
         <span class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ item.cost }},</span>
         <span class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ item.lengths }}</span>
       </li>
-    </ul>
+    </ul> -->
   </main>
 
   <div class="flex items-center bg-blue-500 text-white text-sm font-bold px-4 py-3 mt-12" role="alert">
@@ -96,6 +150,11 @@ export default {
   name: 'NewSkillLengths',
   data() {
     return {
+      cols: [
+        { prop: "name", label: "名稱" },
+        { prop: "cost", label: "PT" },
+        { prop: "lengths", label: "身距" }
+      ],
       skillHasPreSkill: false,
       alertMessage: "",
       showDismissibleAlert: false,
@@ -195,10 +254,10 @@ export default {
     },
     enableEdit: function(index) {
       this.items[index].edit = true;
-      this.$nextTick(() => {
-        let input = this.$refs.skill[0];
-        input.focus();
-      });
+      // this.$nextTick(() => {
+      //   let input = this.$refs.skill[0];
+      //   input.focus();
+      // });
     },
     disableEdit: function(index) {
       this.items[index].edit = false;
