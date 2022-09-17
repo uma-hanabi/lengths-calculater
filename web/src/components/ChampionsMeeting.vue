@@ -4,9 +4,23 @@
   <main class="mt-3">
     <el-form class="elform" ref="form" label-width="auto" >
         <el-form-item label="杯賽">
-            <el-select v-model="currentChampionship" style="width:100%;" collapse-tags placeholder="choose champtionship meeting" filterable @input="syncSkillList(currentChampionship)">
-                <el-option v-for="item in champtionshipList" :value="item.key" :key="item.key" :label="item.zhtw"/>
-            </el-select>
+          <el-select v-model="currentChampionship" style="width:100%;" collapse-tags placeholder="choose champtionship meeting" filterable @input="syncSkillList(currentChampionship)">
+              <el-option v-for="item in champtionshipList" :value="item.key" :key="item.key" :label="item.zhtw"/>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="腳質">
+          <el-button :type="btnGroupState1 === true?'danger':'primary'" :checked="picked" round size="mini" @click="syncRunStyle('front_runner', 1)">
+            領頭
+          </el-button>
+          <el-button :type="btnGroupState2 === true?'danger':'primary'" :checked="picked" round size="mini" @click="syncRunStyle('middle_of_pack_f', 2)">
+            前列
+          </el-button>
+          <el-button :type="btnGroupState3 === true?'danger':'primary'" :checked="picked" round size="mini" @click="syncRunStyle('middle_of_pack_b', 3)">
+            居中
+          </el-button>
+          <el-button :type="btnGroupState4 === true?'danger':'primary'" :checked="picked" round size="mini" @click="syncRunStyle('back_finisher', 4)">
+            後追
+          </el-button>
         </el-form-item>
         <el-form-item label="持有PT">
           <el-input id="total_skill_pt" type="text" placeholder="Add total skill points" autofocus ref="addskill" v-model="totalSkillPoint"
@@ -16,7 +30,7 @@
         </el-form-item>
         <el-form-item label="技能名稱">
             <el-select v-model="skillName" style="width:100%;" collapse-tags placeholder="choose skill" filterable @input="syncSkillInfo(skillName)">
-                <el-option v-for="item in skillListAll" :value="item.name" :key="item.name" :label="item.name"/>
+                <el-option v-for="item in skillListShow" :value="item.name" :key="item.name" :label="item.name"/>
             </el-select>
         </el-form-item>
         <el-form-item label="技能折扣(%)">
@@ -25,8 +39,8 @@
             </el-select>
         </el-form-item>
         <el-form-item label="技能消耗PT">
-          <span v-if="skillName != ''" class="el-form-item__content">{{ skillCost }}</span>
-          <span v-else class="el-form-item__content">{{ skillCost }}</span>
+          <span v-if="skillName != ''" class="el-form-item__content">{{ skillCostShow }}</span>
+          <span v-else class="el-form-item__content">{{ skillCostShow }}</span>
         </el-form-item>
         <el-form-item label="技能身距">
           <span class="el-form-item__content">{{ skillLengths }}</span>
@@ -78,21 +92,31 @@ export default {
   name: 'NewSkillLengths',
   data() {
     return {
+      picked: true,
+      runStyle: "",
       currentChampionship: "Taurus",
       totalSkillPoint: "",
       skillName: "",
       skillCost: 0,
+      skillCostShow: 0,
+      preSkillCost: 0,
       skillLengths: 0,
       skillDiscount: 0,
+      preSkillDiscount: 0,
       items: [],
       result: [],
       maxLengths: 0,
       isError: false,
       dropdownValue: "",
       skillDict: {},
-      skillListAll: [],
+      skillsOrigin: skills,
+      skillListShow: [],
       champtionshipList: championshipZhTwMap,
-      skillDiscountList: [0, 10, 20, 30, 35, 40]
+      skillDiscountList: [0, 10, 20, 30, 35, 40],
+      btnGroupState1: false,
+      btnGroupState2: false,
+      btnGroupState3: false,
+      btnGroupState4: false
     };
   },
   mounted() {
@@ -100,8 +124,23 @@ export default {
   },
   methods: {
     addItem: function() {
+      // this.skillDict[skillName].forEach( function(skills) {
+      //     try {
+      //       Object.entries(skills).map(items => {
+      //       console.log(items)
+      //       items.forEach( function(item, index) {
+      //         if (index != 0) {
+      //           cost = cost + item.cost
+      //           lengths = lengths + item.lengths
+      //         }
+      //       })
+      //     })
+      //     } catch (error) {
+      //       console.log(error)
+      //     }
+      //   });
       var skillName = this.skillName
-      var skillCost = this.skillCost
+      var skillCost = this.skillCostShow
       var skillLengths = this.skillLengths
       if (skillName == "" || skillCost == "" ||skillLengths == "") {
         return false;
@@ -112,14 +151,12 @@ export default {
       }
       this.items.push({
         title: skillName,
-        cost: this.skillCost,
-        lengths: this.skillLengths,
+        cost: skillCost,
+        lengths: skillLengths,
         edit: false
       });
 
-      this.skillName = ""
-      this.skillCost = ""
-      this.skillLengths = ""
+      this.resetSkillInfo()
       this.isError = false;
       this.setSkillCount()
     },
@@ -218,24 +255,120 @@ export default {
         return item.includes(this.dropdownValue);
     },
     syncSkillInfo: function(skillName) {
-        this.skillCost = this.skillDict[skillName]["cost"]
-        this.skillLengths = this.skillDict[skillName]["lengths"]
+        var cost = 0
+        var lengths = 0
+        //console.log()
+        this.skillDict[skillName].forEach( function(skills) {
+          try {
+            Object.entries(skills).map(items => {
+            console.log(items)
+            items.forEach( function(item, index) {
+              if (index != 0) {
+                cost = cost + item.cost
+                lengths = lengths + item.lengths
+              }
+            })
+          })
+          } catch (error) {
+            console.log(error)
+          }
+        });
+        this.skillCost = cost
+        this.skillCostShow = this.skillCost
+        //this.skillCost = this.skillDict[skillName]["cost"]
+        this.skillDict[skillName].forEach( function(item) {
+          console.log(item)
+          //this.skillLengths += item.lengths
+        });
+        //this.skillLengths = this.skillDict[skillName]["lengths"]
+        this.skillLengths = lengths
+        this.skillDiscount = 0
+    },
+    resetSkillInfo: function() {
+        this.skillName = ""
+        this.skillCost = 0
+        this.skillCostShow = 0
+        this.skillLengths = 0
         this.skillDiscount = 0
     },
     syncSkillList: function(champtionship) {
         let tmpSkillMap = {}
-        this.skillListAll = skills[champtionship]
-        this.skillListAll.forEach( function (item)  {
-          tmpSkillMap[item.name] = {
-            "cost": item.cost,
-            "lengths": item.lengths
-          }
+        let runStyle = this.runStyle
+        let skillListAll = JSON.parse( JSON.stringify(skills[champtionship]) );
+        let skillListShow = JSON.parse( JSON.stringify(skills[champtionship]) );
+        skillListAll.forEach( function (item)  {
+          let tmpSkills = []
+          console.log(item)
+          item.info.forEach ( function (skill) {
+            //console.log(skill)
+            let tmpSkill = {}
+            let lengths = skill.lengths[runStyle];
+            let name = item.name + skill.name
+            if (lengths > 0) {
+                tmpSkill[name] = {
+                "cost": skill.cost,
+                "lengths": skill.lengths[runStyle]
+              }
+              console.log(tmpSkill)
+              tmpSkills.push(tmpSkill)
+            }
+          });
+          console.log(tmpSkills)
+          tmpSkillMap[item.name] = tmpSkills
         });
         console.log(tmpSkillMap)
         this.skillDict = tmpSkillMap
+        this.skillListShow = skillListShow.map( function(item) {
+          let add = true
+          //console.log(item)
+          // item.info.forEach( function(ss) {
+          //   console.log(ss.lengths[runStyle])
+          //   if (ss.lengths[runStyle] == 0) {
+          //     add = false
+          //   }
+          // })
+          if (add === true) {
+            return {
+              ...item
+            }
+          }
+        })
+    },
+    syncRunStyle: function(value, currentBtn) {
+      console.log(value)
+      this.runStyle = value;
+      this.resetSkillInfo()
+      this.syncSkillList(this.currentChampionship)
+      switch(currentBtn){
+        case 1:
+          this.btnGroupState1 = true
+          this.btnGroupState2 = false
+          this.btnGroupState3 = false
+          this.btnGroupState4 = false
+          break
+        case 2:
+          this.btnGroupState1 = false
+          this.btnGroupState2 = true
+          this.btnGroupState3 = false
+          this.btnGroupState4 = false
+          break
+        case 3:
+          this.btnGroupState1 = false
+          this.btnGroupState2 = false
+          this.btnGroupState3 = true
+          this.btnGroupState4 = false
+          break
+        case 4:
+          this.btnGroupState1 = false
+          this.btnGroupState2 = false
+          this.btnGroupState3 = false
+          this.btnGroupState4 = true
+          break
+      }
     },
     updateSkillCost: function() {
-        this.skillCost = this.skillCost - this.skillCost*this.skillDiscount/100
+        this.skillCostShow = this.skillCost - this.skillCost*this.skillDiscount/100
+        
     }
   }
 }

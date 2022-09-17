@@ -1,26 +1,186 @@
 {
     "Taurus": [
         {
-            "name": "test1",
-            "cost": 100,
-            "lengths": 1.2
+            "name": "合成代謝開始！(雷恩)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 3.2,
+                        "back_finisher": 3.32
+                    },
+                    "preSkill": false,
+                    "preSkillCost": 0
+                }
+            ]
         },
         {
-            "name": "test2",
-            "cost": 101,
-            "lengths": 1.3
+            "name": "紅焰檔位/LP1211-M(司機)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 2.26,
+                        "middle_of_pack_f": 2.33,
+                        "middle_of_pack_b": 2.62,
+                        "back_finisher": 2.73
+                    },
+                    "preSkill": false,
+                    "preSkillCost": 0
+                }
+            ]
         },
         {
-            "name": "test3",
-            "cost": 102,
-            "lengths": 1.4
+            "name": "VICTORY SHOT！(大樹)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 2.26,
+                        "middle_of_pack_f": 2.33,
+                        "middle_of_pack_b": 2.62,
+                        "back_finisher": 2.73
+                    }
+                }
+            ]
+        },
+        {
+            "name": "閃耀☆著陸(重砲)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 2.95,
+                        "middle_of_pack_f": 3.04,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "preSkill": false,
+                    "preSkillCost": 0
+                }
+            ]
+        },
+        {
+            "name": "讓你見識皇帝的威勢吧(皇帝)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 0.72,
+                        "middle_of_pack_f": 0.71,
+                        "middle_of_pack_b": 0.7,
+                        "back_finisher": 0.7
+                    },
+                    "preSkill": false,
+                    "preSkillCost": 0
+                }
+            ]
+        },
+        {
+            "name": "終極帝皇舞步(帝王)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 0.72,
+                        "middle_of_pack_f": 0.71,
+                        "middle_of_pack_b": 0.7,
+                        "back_finisher": 0.7
+                    },
+                    "preSkill": false,
+                    "preSkillCost": 0
+                }
+            ]
+        },
+        {
+            "name": "勝利的躍動(小栗帽)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 0.7,
+                        "middle_of_pack_f": 0.7,
+                        "middle_of_pack_b": 0.7,
+                        "back_finisher": 0.7
+                    },
+                    "preSkill": false,
+                    "preSkillCost": 0
+                }
+            ]
+        },
+        {
+            "name": "Pride Of King(帝王光輝)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 0.7,
+                        "middle_of_pack_f": 0.7,
+                        "middle_of_pack_b": 0.7,
+                        "back_finisher": 0.7
+                    },
+                    "preSkill": false,
+                    "preSkillCost": 0
+                }
+            ]
+        },
+        {
+            "name": "逃脫術",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 1.25,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "preSkill": true,
+                    "preSkillCost": 180
+                }
+            ]
+        },
+        {
+            "name": "中距離彎道",
+            "info": [
+                {
+                    "name": "○",
+                    "cost": 100,
+                    "lengths": {
+                        "front_runner": 0.5,
+                        "middle_of_pack_f": 0.51,
+                        "middle_of_pack_b": 0.5,
+                        "back_finisher": 0.42
+                    },
+                    "preSkill": false,
+                    "preSkillCost": 0
+                },
+                {
+                    "name": "◎",
+                    "cost": 110,
+                    "lengths": {
+                        "front_runner": 0.32,
+                        "middle_of_pack_f": 0.31,
+                        "middle_of_pack_b": 0.32,
+                        "back_finisher": 0.4
+                    },
+                    "preSkill": false,
+                    "preSkillCost": 0
+                }
+            ]
         }
     ],
     "Gemini": [
-        {
-            "name": "暫無數據",
-            "cost": 0,
-            "lengths": 0
-        }
     ]
 }
