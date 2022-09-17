@@ -191,6 +191,7 @@ export default {
     removeItem: function(index) {
       this.items.splice(index, 1);
       this.$refs.addskill.focus();
+      this.setSkillCount()
     },
     enableEdit: function(index) {
       this.items[index].edit = true;
