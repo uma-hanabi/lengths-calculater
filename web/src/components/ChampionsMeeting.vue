@@ -54,8 +54,8 @@
     <ul class="max-w-xs">
       <span v-if="items.length > 0" >目前技能</span>
       <li v-for="(item, index) in items" class="my-4 flex items-left justify-end" :key='index'>
-        <span v-if="! item.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black" @click="enableEdit(index)">{{ item.title }},</span>
-        <input v-else type="text" v-model="item.title" :ref="'skill'" @keyup.enter="disableEdit(index)"  class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white">
+        <span v-if="! item.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black" @click="enableEdit(index)">{{ item.name }},</span>
+        <input v-else type="text" v-model="item.name" :ref="'skill'" @keyup.enter="disableEdit(index)"  class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white">
         <span v-if="! item.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black" @click="enableEdit(index)">{{ item.cost }},</span>
         <input v-else type="text" v-on:input="item.cost=onlyNumber(item.cost)" v-model="item.cost" :ref="'skill'" @keyup.enter="disableEdit(index)"  class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white">
         <span v-if="! item.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black" @click="enableEdit(index)">{{ item.lengths }}</span>
@@ -69,7 +69,7 @@
     <ul class="max-w-xs">
     <span v-if="result.length > 0" >最大馬身: {{ maxLengths }}</span>
       <li v-for="(item, index) in result" class="my-4 flex result-right justify-end" :key='index'>
-        <span class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ item.title }},</span>
+        <span class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ item.name }},</span>
         <span class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ item.cost }},</span>
         <span class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ item.lengths }}</span>
       </li>
@@ -124,24 +124,11 @@ export default {
   },
   methods: {
     addItem: function() {
-      // this.skillDict[skillName].forEach( function(skills) {
-      //     try {
-      //       Object.entries(skills).map(items => {
-      //       console.log(items)
-      //       items.forEach( function(item, index) {
-      //         if (index != 0) {
-      //           cost = cost + item.cost
-      //           lengths = lengths + item.lengths
-      //         }
-      //       })
-      //     })
-      //     } catch (error) {
-      //       console.log(error)
-      //     }
-      //   });
+      let that = this
       var skillName = this.skillName
       var skillCost = this.skillCostShow
       var skillLengths = this.skillLengths
+      let calculatedItemList = this.items
       if (skillName == "" || skillCost == "" ||skillLengths == "") {
         return false;
       }
@@ -149,12 +136,37 @@ export default {
         this.isError = true;
         return false;
       }
-      this.items.push({
-        title: skillName,
-        cost: skillCost,
-        lengths: skillLengths,
-        edit: false
+
+      this.skillDict[skillName].forEach( function(skills) {
+        // //console.log(skills)
+        try {
+          Object.entries(skills).map(skillInfo => {
+          //console.log(skillInfo)
+          skillInfo.forEach( function(item, index) {
+            if (index != 0) {
+              //console.log(skillInfo[0])
+              //console.log(item.cost)
+              //console.log(item.lengths)
+              calculatedItemList.push({
+                name: skillInfo[0],
+                cost: that.calculateCost(item.cost, that.skillDiscount),
+                lengths: item.lengths,
+                edit: false
+              });
+            }
+          })
+        })
+        } catch (error) {
+          //console.log(error)
+        }
       });
+      this.items = calculatedItemList
+      // this.items.push({
+      //   name: skillName,
+      //   cost: skillCost,
+      //   lengths: skillLengths,
+      //   edit: false
+      // });
 
       this.resetSkillInfo()
       this.isError = false;
@@ -176,7 +188,7 @@ export default {
     },
     itemExist: function(value) {
       for (var i = 0; i < this.items.length; i++) {
-        if (this.items[i].title === value) {
+        if (this.items[i].name === value) {
           return true;
         }
       }
@@ -251,17 +263,19 @@ export default {
       this.$emit("getSkillCount", this.items.length);
     },
     filterSearch: function(item) {
-        console.log(this.dropdownValue);
+        //console.log(this.dropdownValue);
         return item.includes(this.dropdownValue);
     },
     syncSkillInfo: function(skillName) {
         var cost = 0
         var lengths = 0
-        //console.log()
+        if (this.runStyle == "" ) {
+          console.log("please select run style first")
+          return
+        }
         this.skillDict[skillName].forEach( function(skills) {
           try {
             Object.entries(skills).map(items => {
-            console.log(items)
             items.forEach( function(item, index) {
               if (index != 0) {
                 cost = cost + item.cost
@@ -270,16 +284,16 @@ export default {
             })
           })
           } catch (error) {
-            console.log(error)
+            //console.log(error)
           }
         });
         this.skillCost = cost
         this.skillCostShow = this.skillCost
         //this.skillCost = this.skillDict[skillName]["cost"]
-        this.skillDict[skillName].forEach( function(item) {
-          console.log(item)
-          //this.skillLengths += item.lengths
-        });
+        // this.skillDict[skillName].forEach( function(item) {
+        //   //console.log(item)
+        //   //this.skillLengths += item.lengths
+        // });
         //this.skillLengths = this.skillDict[skillName]["lengths"]
         this.skillLengths = lengths
         this.skillDiscount = 0
@@ -298,7 +312,7 @@ export default {
         let skillListShow = JSON.parse( JSON.stringify(skills[champtionship]) );
         skillListAll.forEach( function (item)  {
           let tmpSkills = []
-          console.log(item)
+          //console.log(item)
           item.info.forEach ( function (skill) {
             //console.log(skill)
             let tmpSkill = {}
@@ -309,20 +323,20 @@ export default {
                 "cost": skill.cost,
                 "lengths": skill.lengths[runStyle]
               }
-              console.log(tmpSkill)
+              //console.log(tmpSkill)
               tmpSkills.push(tmpSkill)
             }
           });
-          console.log(tmpSkills)
+          //console.log(tmpSkills)
           tmpSkillMap[item.name] = tmpSkills
         });
-        console.log(tmpSkillMap)
+        //console.log(tmpSkillMap)
         this.skillDict = tmpSkillMap
         this.skillListShow = skillListShow.map( function(item) {
           let add = true
           //console.log(item)
           // item.info.forEach( function(ss) {
-          //   console.log(ss.lengths[runStyle])
+          //   //console.log(ss.lengths[runStyle])
           //   if (ss.lengths[runStyle] == 0) {
           //     add = false
           //   }
@@ -335,7 +349,6 @@ export default {
         })
     },
     syncRunStyle: function(value, currentBtn) {
-      console.log(value)
       this.runStyle = value;
       this.resetSkillInfo()
       this.syncSkillList(this.currentChampionship)
@@ -367,8 +380,11 @@ export default {
       }
     },
     updateSkillCost: function() {
-        this.skillCostShow = this.skillCost - this.skillCost*this.skillDiscount/100
+        this.skillCostShow = this.calculateCost(this.skillCost, this.skillDiscount)
         
+    },
+    calculateCost: function(cost, discount) {
+      return Math.round(cost - cost*discount/100)
     }
   }
 }
