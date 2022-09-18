@@ -12,6 +12,7 @@
                         "middle_of_pack_b": 3.2,
                         "back_finisher": 3.32
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -32,6 +33,7 @@
                         "middle_of_pack_b": 2.62,
                         "back_finisher": 2.73
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -52,6 +54,7 @@
                         "middle_of_pack_b": 2.62,
                         "back_finisher": 2.73
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -72,6 +75,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -92,6 +96,7 @@
                         "middle_of_pack_b": 0.7,
                         "back_finisher": 0.7
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -112,6 +117,7 @@
                         "middle_of_pack_b": 0.7,
                         "back_finisher": 0.7
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -132,6 +138,7 @@
                         "middle_of_pack_b": 0.7,
                         "back_finisher": 0.7
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -152,6 +159,7 @@
                         "middle_of_pack_b": 0.7,
                         "back_finisher": 0.7
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -172,6 +180,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 1,
                     "preSkill": true,
                     "preSkillName": "疾行",
                     "preSkillCost": 180,
@@ -192,6 +201,7 @@
                         "middle_of_pack_b": 0.5,
                         "back_finisher": 0.42
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -207,6 +217,7 @@
                         "middle_of_pack_b": 0.32,
                         "back_finisher": 0.4
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -227,6 +238,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -242,6 +254,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -262,6 +275,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -277,6 +291,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -297,6 +312,7 @@
                         "middle_of_pack_b": 0.5,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -312,6 +328,7 @@
                         "middle_of_pack_b": 0.32,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -332,6 +349,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0.42
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -347,6 +365,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0.4
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -367,6 +386,7 @@
                         "middle_of_pack_b": 0.41,
                         "back_finisher": 0.42
                     },
+                    "exceptedValue": 0.87,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -382,6 +402,7 @@
                         "middle_of_pack_b": 0.3,
                         "back_finisher": 0.26
                     },
+                    "exceptedValue": 0.92,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -402,6 +423,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 0.87,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -417,6 +439,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 0.92,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -437,6 +460,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 0.87,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -452,6 +476,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 0.92,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -472,6 +497,7 @@
                         "middle_of_pack_b": 0.41,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 0.87,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -487,6 +513,7 @@
                         "middle_of_pack_b": 0.3,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 0.92,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -507,6 +534,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0.42
                     },
+                    "exceptedValue": 0.87,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -522,6 +550,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0.26
                     },
+                    "exceptedValue": 0.92,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -542,6 +571,7 @@
                         "middle_of_pack_b": 0.74,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 0.821,
                     "preSkill": true,
                     "preSkillName": "前驅取位",
                     "preSkillCost": 180,
@@ -557,11 +587,12 @@
                     "name": "",
                     "cost": 180,
                     "lengths": {
-                        "front_runner": 0.67,
+                        "front_runner": 0.859,
                         "middle_of_pack_f": 0.67,
                         "middle_of_pack_b": 0.66,
                         "back_finisher": 0.66
                     },
+                    "exceptedValue": 1,
                     "preSkill": true,
                     "preSkillName": "彎道靈巧○",
                     "preSkillCost": 180,
@@ -582,6 +613,7 @@
                         "middle_of_pack_b": 0.48,
                         "back_finisher": 0.47
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -597,6 +629,7 @@
                         "middle_of_pack_b": 0.23,
                         "back_finisher": 0.23
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -617,6 +650,7 @@
                         "middle_of_pack_b": 0.48,
                         "back_finisher": 0.47
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -632,6 +666,7 @@
                         "middle_of_pack_b": 0.23,
                         "back_finisher": 0.23
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -652,6 +687,7 @@
                         "middle_of_pack_b": 0.35,
                         "back_finisher": 0.36
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -667,6 +703,7 @@
                         "middle_of_pack_b": 0.18,
                         "back_finisher": 0.18
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -687,6 +724,7 @@
                         "middle_of_pack_b": 0.55,
                         "back_finisher": 0.56
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -707,6 +745,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -727,6 +766,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 0.474,
                     "preSkill": true,
                     "preSkillName": "緊咬不放",
                     "preSkillCost": 180,
@@ -747,6 +787,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 0.474,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -767,6 +808,7 @@
                         "middle_of_pack_b": 0.5,
                         "back_finisher": 0.51
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -787,6 +829,7 @@
                         "middle_of_pack_b": 0.5,
                         "back_finisher": 0.51
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -807,6 +850,7 @@
                         "middle_of_pack_b": 0.5,
                         "back_finisher": 0.51
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -827,6 +871,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -847,6 +892,7 @@
                         "middle_of_pack_b": 0.33,
                         "back_finisher": 0.33
                     },
+                    "exceptedValue": 91.4,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -867,6 +913,7 @@
                         "middle_of_pack_b": 0.33,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 0.821,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -887,6 +934,7 @@
                         "middle_of_pack_b": 0.3,
                         "back_finisher": 0.3
                     },
+                    "exceptedValue": 0.826,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -907,6 +955,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 1,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 0,
@@ -927,6 +976,7 @@
                         "middle_of_pack_b": 1,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 0.396,
                     "preSkill": true,
                     "preSkillName": "",
                     "preSkillCost": 180,
@@ -947,6 +997,7 @@
                         "middle_of_pack_b": 0.63,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 0.445,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 180,
@@ -967,6 +1018,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 0.417,
                     "preSkill": true,
                     "preSkillName": "準備強行衝線",
                     "preSkillCost": 180,
@@ -987,6 +1039,7 @@
                         "middle_of_pack_b": 0,
                         "back_finisher": 0
                     },
+                    "exceptedValue": 0.485,
                     "preSkill": false,
                     "preSkillName": "",
                     "preSkillCost": 180,

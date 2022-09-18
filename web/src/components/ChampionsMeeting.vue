@@ -1,6 +1,6 @@
 <template>
   <div id="app" v-cloak class="container mx-auto flex items-center flex-col mt-10">
-  <b-alert v-model="showDismissibleAlert" variant="danger">
+  <b-alert v-model="showDismissibleAlert" variant="danger" style="float">
     {{ alertMessage }}
   </b-alert>
   <main class="mt-3">
@@ -45,11 +45,23 @@
             </el-select>
         </el-form-item>
         <el-form-item label="技能消耗PT">
-          <span v-if="skillName != ''" class="el-form-item__content">{{ skillCostShow }}</span>
-          <span v-else class="el-form-item__content">{{ skillCostShow }}</span>
+          <span v-if="skillName != ''" style="display: inline-block;width:30%;" class="el-form-item__content">{{ skillCostShow }}</span>
+          <span v-else style="display: inline-block;width:30%;" class="el-form-item__content">{{ skillCostShow }}</span>
+          <el-checkbox style="display: inline-block" v-model="talentGiftedChecked" @change="syncTalentGiftedCheckBox(talentGiftedChecked)">
+            天賦異稟
+            <el-tooltip style="display: inline-block;;" class="item" content="所有技能pt 9 折" placement="right-start">
+              <i class="el-icon-question"/>
+            </el-tooltip>
+          </el-checkbox>
         </el-form-item>
         <el-form-item label="技能身距">
-          <span class="el-form-item__content">{{ skillLengths }}</span>
+          <span style="display: inline-block;width:30%;" class="el-form-item__content">{{ skillLengths }}</span>
+          <el-checkbox style="display: inline-block" v-model="exceptedValueChecked" @change="syncExceptedValueCheckBox(exceptedValueChecked)">
+            考慮有效率
+            <el-tooltip style="display: inline-block;" class="item" content="計算技能發動的期望值" placement="right-start">
+              <i class="el-icon-question"/>
+            </el-tooltip>
+          </el-checkbox>
         </el-form-item>
     </el-form>
     <div>
@@ -57,11 +69,13 @@
       <el-button style="width:100px;height:30px;" class="submitButton" v-on:click="calculateLengths()">計算</el-button>
     </div>
     <br/>
-    <hr v-if="items.length > 0"/>
-    <span v-if="items.length > 0">目前技能</span>
+    <hr/>
     <div>
-      <el-table v-if="items.length > 0" :data="items" style="display: inline-block;width:100%;" class="table_bsm" label="123">
-        <span v-if="items.length > 0" >目前技能</span>
+      <label style="width:10%" class="el-input">目前技能</label>
+      <el-button class="button" style="display: inline-block;" @click="removeItem('all')">重置</el-button>
+    </div>
+    <div>
+      <el-table :data="items" style="display: inline-block;width:100%;" class="table_bsm" label="123">
         <el-table-column prop="name" label="技能名稱">
           <template slot-scope="scope">
             <span v-if="! scope.row.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ scope.row.name }}</span>
@@ -91,7 +105,7 @@
     </div>
     <br/>
     <hr v-if="items.length > 0"/>
-    <span v-if="result.length > 0">最大馬身技能({{ maxLengths }})</span>
+    <label v-if="result.length > 0" class="el-input">最大馬身技能({{ maxLengths }})</label>
     <div>
       <el-table v-if="result.length > 0" :data="result" style="display: inline-block;width:100%;" class="table_bsm">
         <el-table-column prop="name" label="技能名稱">
@@ -150,11 +164,8 @@ export default {
   name: 'NewSkillLengths',
   data() {
     return {
-      cols: [
-        { prop: "name", label: "名稱" },
-        { prop: "cost", label: "PT" },
-        { prop: "lengths", label: "身距" }
-      ],
+      talentGiftedChecked: false,
+      exceptedValueChecked: false,
       skillHasPreSkill: false,
       alertMessage: "",
       showDismissibleAlert: false,
@@ -168,6 +179,7 @@ export default {
       preSkillCost: 0,
       skillCostShow: 0,
       skillLengths: 0,
+      skillExceptedValue: 1,
       skillDiscount: 0,
       preSkillDiscount: 0,
       items: [],
@@ -192,6 +204,18 @@ export default {
       let that = this
       if (pt != "") {
         that.hideAlert()
+      }
+    },
+    syncTalentGiftedCheckBox: function(value) {
+      this.talentGiftedChecked = value
+      if (this.skillName != "") {
+        this.syncSkillInfo(this.skillName)
+      }
+    },
+    syncExceptedValueCheckBox: function(value) {
+      this.exceptedValueChecked = value
+      if (this.skillName != "") {
+        this.syncSkillInfo(this.skillName)
       }
     },
     showAlert: function(msg) {
@@ -232,7 +256,7 @@ export default {
               calculatedItemList.push({
                 name: skillInfo[0],
                 cost: mainSkillCost + preSkillCost,
-                lengths: item.lengths,
+                lengths: parseFloat(item.lengths * that.skillExceptedValue).toFixed(3),
                 edit: false
               });
             }
@@ -248,6 +272,10 @@ export default {
       this.setSkillCount()
     },
     removeItem: function(index) {
+      if (index == "all") {
+        this.items = []
+        return
+      }
       this.items.splice(index, 1);
       this.$refs.addskill.focus();
       this.setSkillCount()
@@ -351,18 +379,29 @@ export default {
         var mainSkillCost = 0
         var preSkillCost = 0
         var lengths = 0
+        var ptBias = 1
+        var lengthsBias = 1
+        var isTalentGifted = this.talentGiftedChecked
+        var isCalculateExceptedValue = this.exceptedValueChecked
         let that = this
         if (that.runStyle == "" ) {
           that.showAlert("請先選擇腳質")
           return
         }
+        if (isTalentGifted === true) {
+          ptBias *= 0.9
+        }
         this.skillDict[skillName].forEach( function(skills) {
           try {
             Object.entries(skills).map(items => {
             items.forEach( function(item, index) {
-              console.log(item)
+              //console.log(item)
               if (index != 0) {
+                //console.log(item)
                 mainSkillCost = mainSkillCost + item.cost
+                if (isCalculateExceptedValue === true) {
+                  lengthsBias = item.skillExceptedValue
+                }
                 if (item.preSkill === true) {
                   that.skillHasPreSkill = true
                   preSkillCost = preSkillCost + item.preSkillCost
@@ -378,10 +417,11 @@ export default {
             //console.log(error)
           }
         });
-        this.skillCost = mainSkillCost
-        this.preSkillCost = preSkillCost
-        this.skillCostShow = mainSkillCost + preSkillCost
-        this.skillLengths = parseFloat(lengths).toFixed(2)
+        this.skillExceptedValue = lengthsBias
+        this.skillCost = mainSkillCost * ptBias
+        this.preSkillCost = preSkillCost * ptBias
+        this.skillCostShow = (mainSkillCost + preSkillCost) * ptBias
+        this.skillLengths = parseFloat(lengths*lengthsBias).toFixed(3)
         this.skillDiscount = 0
     },
     resetSkillInfo: function() {
@@ -408,6 +448,7 @@ export default {
                 tmpSkill[name] = {
                 "cost": skill.cost,
                 "lengths": skill.lengths[runStyle],
+                "skillExceptedValue": skill.exceptedValue,
                 "preSkill": skill.preSkill,
                 "preSkillName": skill.preSkillName,
                 "preSkillCost": skill.preSkillCost,
