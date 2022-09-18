@@ -179,6 +179,7 @@ export default {
       preSkillCost: 0,
       skillCostShow: 0,
       skillLengths: 0,
+      skillLengthsBias: 1,
       skillExceptedValue: 1,
       skillDiscount: 0,
       preSkillDiscount: 0,
@@ -255,7 +256,7 @@ export default {
               var preSkillCost = that.calculateCost(item.preSkillCost, that.preSkillDiscount)
               calculatedItemList.push({
                 name: skillInfo[0],
-                cost: mainSkillCost + preSkillCost,
+                cost: Math.round((mainSkillCost + preSkillCost) * that.skillLengthsBias),
                 lengths: parseFloat(item.lengths * that.skillExceptedValue).toFixed(3),
                 edit: false
               });
@@ -421,6 +422,7 @@ export default {
         this.skillCost = mainSkillCost * ptBias
         this.preSkillCost = preSkillCost * ptBias
         this.skillCostShow = (mainSkillCost + preSkillCost) * ptBias
+        this.skillLengthsBias = ptBias
         this.skillLengths = parseFloat(lengths*lengthsBias).toFixed(3)
         this.skillDiscount = 0
     },
