@@ -1050,5 +1050,1473 @@
         }
     ],
     "Gemini": [
+        {
+            "name": "合成代謝開始！(雷恩)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 1.1,
+                        "middle_of_pack_f": 1.16,
+                        "middle_of_pack_b": 1.29,
+                        "back_finisher": 1.45
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "釣魚×計謀(青雲天空)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 1.1,
+                        "middle_of_pack_f": 1.16,
+                        "middle_of_pack_b": 1.29,
+                        "back_finisher": 1.45
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "讓你見識皇帝的威勢吧(皇帝)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 0.94,
+                        "middle_of_pack_f": 0.94,
+                        "middle_of_pack_b": 0.94,
+                        "back_finisher": 0.94
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "勝利的躍動(小栗帽)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 0.86,
+                        "middle_of_pack_f": 0.85,
+                        "middle_of_pack_b": 0.83,
+                        "back_finisher": 0.83
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "Pride Of King(帝王光輝)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 0.86,
+                        "middle_of_pack_f": 0.85,
+                        "middle_of_pack_b": 0.83,
+                        "back_finisher": 0.83
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "模範生×驀進＝大獲全勝(櫻花驀進王)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 0.69,
+                        "middle_of_pack_f": 0.71,
+                        "middle_of_pack_b": 0.7,
+                        "back_finisher": 0.7
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "花樣繽紛☆飛行演習(【陽光捧花】重砲)",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 0.69,
+                        "middle_of_pack_f": 0.71,
+                        "middle_of_pack_b": 0.7,
+                        "back_finisher": 0.7
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "必須貫徹高貴的使命(目白麥昆(黑))",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 200,
+                    "lengths": {
+                        "front_runner": 0.57,
+                        "middle_of_pack_f": 0.57,
+                        "middle_of_pack_b": 0.57,
+                        "back_finisher": 0.57
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "前鋒的心得",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 160,
+                    "lengths": {
+                        "front_runner": 1.69,
+                        "middle_of_pack_f": 1.7,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": true,
+                    "preSkillName": "維持領先",
+                    "preSkillCost": 160,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "維持領先",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 160,
+                    "lengths": {
+                        "front_runner": 0.73,
+                        "middle_of_pack_f": 0.75,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": true,
+                    "upperSkillName": "前鋒的心得"
+                }
+            ]
+        },
+        {
+            "name": "逃脫術",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 1.69,
+                        "middle_of_pack_f": 1.7,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": true,
+                    "preSkillName": "疾行",
+                    "preSkillCost": 180,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "疾行",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0.73,
+                        "middle_of_pack_f": 0.75,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": true,
+                    "upperSkillName": "逃脫術"
+                }
+            ]
+        },
+        {
+            "name": "良好場地(750力)",
+            "info": [
+                {
+                    "name": "○",
+                    "cost": 90,
+                    "lengths": {
+                        "front_runner": 0.86,
+                        "middle_of_pack_f": 0.9,
+                        "middle_of_pack_b": 1.01,
+                        "back_finisher": 1
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                },
+                {
+                    "name": "◎",
+                    "cost": 110,
+                    "lengths": {
+                        "front_runner": 0.41,
+                        "middle_of_pack_f": 0.41,
+                        "middle_of_pack_b": 0.45,
+                        "back_finisher": 0.49
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "昇龍",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 1.3,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": true,
+                    "preSkillName": "準備外側超前",
+                    "preSkillCost": 180,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "準備外側超前",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0.57,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": true,
+                    "upperSkillName": "昇龍"
+                }
+            ]
+        },
+        {
+            "name": "長距離彎道",
+            "info": [
+                {
+                    "name": "○",
+                    "cost": 100,
+                    "lengths": {
+                        "front_runner": 0.69,
+                        "middle_of_pack_f": 0.71,
+                        "middle_of_pack_b": 0.7,
+                        "back_finisher": 0.7
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                },
+                {
+                    "name": "◎",
+                    "cost": 110,
+                    "lengths": {
+                        "front_runner": 0.46,
+                        "middle_of_pack_f": 0.44,
+                        "middle_of_pack_b": 0.46,
+                        "back_finisher": 0.47
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "領頭彎道",
+            "info": [
+                {
+                    "name": "○",
+                    "cost": 130,
+                    "lengths": {
+                        "front_runner": 0.69,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                },
+                {
+                    "name": "◎",
+                    "cost": 140,
+                    "lengths": {
+                        "front_runner": 0.46,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "前列彎道",
+            "info": [
+                {
+                    "name": "○",
+                    "cost": 130,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0.71,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                },
+                {
+                    "name": "◎",
+                    "cost": 140,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0.44,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "居中彎道",
+            "info": [
+                {
+                    "name": "○",
+                    "cost": 130,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0.7,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                },
+                {
+                    "name": "◎",
+                    "cost": 140,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0.46,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "後追彎道",
+            "info": [
+                {
+                    "name": "○",
+                    "cost": 130,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0.7
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                },
+                {
+                    "name": "◎",
+                    "cost": 140,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0.47
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "長距離直線",
+            "info": [
+                {
+                    "name": "○",
+                    "cost": 100,
+                    "lengths": {
+                        "front_runner": 0.6,
+                        "middle_of_pack_f": 0.64,
+                        "middle_of_pack_b": 0.6,
+                        "back_finisher": 0.61
+                    },
+                    "exceptedValue": 0.768,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                },
+                {
+                    "name": "◎",
+                    "cost": 110,
+                    "lengths": {
+                        "front_runner": 0.39,
+                        "middle_of_pack_f": 0.4,
+                        "middle_of_pack_b": 0.4,
+                        "back_finisher": 0.39
+                    },
+                    "exceptedValue": 0.815,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "領頭直線",
+            "info": [
+                {
+                    "name": "○",
+                    "cost": 130,
+                    "lengths": {
+                        "front_runner": 0.6,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 0.768,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                },
+                {
+                    "name": "◎",
+                    "cost": 140,
+                    "lengths": {
+                        "front_runner": 0.39,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 0.815,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "前列直線",
+            "info": [
+                {
+                    "name": "○",
+                    "cost": 130,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0.64,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 0.768,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                },
+                {
+                    "name": "◎",
+                    "cost": 140,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0.4,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 0.815,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "居中直線",
+            "info": [
+                {
+                    "name": "○",
+                    "cost": 130,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0.6,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 0.768,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                },
+                {
+                    "name": "◎",
+                    "cost": 140,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0.4,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 0.815,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "後追直線",
+            "info": [
+                {
+                    "name": "○",
+                    "cost": 130,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0.61
+                    },
+                    "exceptedValue": 0.768,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                },
+                {
+                    "name": "◎",
+                    "cost": 140,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0.39
+                    },
+                    "exceptedValue": 0.815,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "順時針",
+            "info": [
+                {
+                    "name": "○",
+                    "cost": 90,
+                    "lengths": {
+                        "front_runner": 0.79,
+                        "middle_of_pack_f": 0.77,
+                        "middle_of_pack_b": 0.7,
+                        "back_finisher": 0.69
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                },
+                {
+                    "name": "◎",
+                    "cost": 110,
+                    "lengths": {
+                        "front_runner": 0.37,
+                        "middle_of_pack_f": 0.4,
+                        "middle_of_pack_b": 0.34,
+                        "back_finisher": 0.34
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "春賽馬娘",
+            "info": [
+                {
+                    "name": "○",
+                    "cost": 90,
+                    "lengths": {
+                        "front_runner": 0.79,
+                        "middle_of_pack_f": 0.77,
+                        "middle_of_pack_b": 0.7,
+                        "back_finisher": 0.69
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                },
+                {
+                    "name": "◎",
+                    "cost": 110,
+                    "lengths": {
+                        "front_runner": 0.37,
+                        "middle_of_pack_f": 0.4,
+                        "middle_of_pack_b": 0.34,
+                        "back_finisher": 0.34
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "追上去！",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 170,
+                    "lengths": {
+                        "front_runner": 1,
+                        "middle_of_pack_f": 1.01,
+                        "middle_of_pack_b": 1.01,
+                        "back_finisher": 1.01
+                    },
+                    "exceptedValue": 0.915,
+                    "preSkill": true,
+                    "preSkillName": "加速步調",
+                    "preSkillCost": 170,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "加速步調",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 170,
+                    "lengths": {
+                        "front_runner": 0.44,
+                        "middle_of_pack_f": 0.45,
+                        "middle_of_pack_b": 0.45,
+                        "back_finisher": 0.45
+                    },
+                    "exceptedValue": 0.918,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": true,
+                    "upperSkillName": "追上去！"
+                }
+            ]
+        },
+        {
+            "name": "迅速果斷",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 1.01,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 0.917,
+                    "preSkill": true,
+                    "preSkillName": "前驅取位",
+                    "preSkillCost": 180,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "前驅取位",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0.45,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 0.921,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": true,
+                    "upperSkillName": "迅速果斷"
+                }
+            ]
+        },
+        {
+            "name": "弧線的教授",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0.93,
+                        "middle_of_pack_f": 0.95,
+                        "middle_of_pack_b": 0.95,
+                        "back_finisher": 0.95
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": true,
+                    "preSkillName": "彎道靈巧○",
+                    "preSkillCost": 180,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "彎道靈巧○",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0.41,
+                        "middle_of_pack_f": 0.42,
+                        "middle_of_pack_b": 0.42,
+                        "back_finisher": 0.42
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": true,
+                    "upperSkillName": "弧線的教授"
+                }
+            ]
+        },
+        {
+            "name": "豎起尾巴",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 100,
+                    "lengths": {
+                        "front_runner": 0.73,
+                        "middle_of_pack_f": 0.75,
+                        "middle_of_pack_b": 0.74,
+                        "back_finisher": 0.75
+                    },
+                    "exceptedValue": 0.989,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "滑流",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 160,
+                    "lengths": {
+                        "front_runner": 0.67,
+                        "middle_of_pack_f": 0.69,
+                        "middle_of_pack_b": 0.68,
+                        "back_finisher": 0.69
+                    },
+                    "exceptedValue": 0.958,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "遊戲到此為止了！",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 160,
+                    "lengths": {
+                        "front_runner": 0.67,
+                        "middle_of_pack_f": 0.69,
+                        "middle_of_pack_b": 0.68,
+                        "back_finisher": 0.69
+                    },
+                    "exceptedValue": 0.958,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "喜愛賽馬娘",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 160,
+                    "lengths": {
+                        "front_runner": 0.67,
+                        "middle_of_pack_f": 0.69,
+                        "middle_of_pack_b": 0.68,
+                        "back_finisher": 0.69
+                    },
+                    "exceptedValue": 0.958,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "全心全力",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 170,
+                    "lengths": {
+                        "front_runner": 0.68,
+                        "middle_of_pack_f": 0.68,
+                        "middle_of_pack_b": 0.67,
+                        "back_finisher": 0.67
+                    },
+                    "exceptedValue": 0,
+                    "preSkill": true,
+                    "preSkillName": "尾段加速",
+                    "preSkillCost": 170,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "尾段加速",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 170,
+                    "lengths": {
+                        "front_runner": 0.41,
+                        "middle_of_pack_f": 0.42,
+                        "middle_of_pack_b": 0.42,
+                        "back_finisher": 0.42
+                    },
+                    "exceptedValue": 0,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": true,
+                    "upperSkillName": "全心全力"
+                }
+            ]
+        },
+        {
+            "name": "領先的自尊",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0.67,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 0.999,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "十萬衝勁",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 120,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0.58,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "內側強者",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 160,
+                    "lengths": {
+                        "front_runner": 0.57,
+                        "middle_of_pack_f": 0.57,
+                        "middle_of_pack_b": 0.57,
+                        "back_finisher": 0.57
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "速度之星",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0.5,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 0,
+                    "preSkill": true,
+                    "preSkillName": "準備突圍",
+                    "preSkillCost": 180,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "準備突圍",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0.22,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 0,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": true,
+                    "upperSkillName": "速度之星"
+                }
+            ]
+        },
+        {
+            "name": "疾風一文字",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 170,
+                    "lengths": {
+                        "front_runner": 0.38,
+                        "middle_of_pack_f": 0.42,
+                        "middle_of_pack_b": 0.4,
+                        "back_finisher": 0.39
+                    },
+                    "exceptedValue": 0.0038,
+                    "preSkill": true,
+                    "preSkillName": "直線靈巧",
+                    "preSkillCost": 170,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "直線靈巧",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 170,
+                    "lengths": {
+                        "front_runner": 0.18,
+                        "middle_of_pack_f": 0.2,
+                        "middle_of_pack_b": 0.18,
+                        "back_finisher": 0.18
+                    },
+                    "exceptedValue": 0.041,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": true,
+                    "upperSkillName": "疾風一文字"
+                }
+            ]
+        },
+        {
+            "name": "後來居上",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 160,
+                    "lengths": {
+                        "front_runner": 0.37,
+                        "middle_of_pack_f": 0.37,
+                        "middle_of_pack_b": 0.31,
+                        "back_finisher": 0.3
+                    },
+                    "exceptedValue": 0.49,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "進攻時機超群",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0.3
+                    },
+                    "exceptedValue": 0.49,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "逼近的身影",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 3.94
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": true,
+                    "preSkillName": "直線一口氣",
+                    "preSkillCost": 180,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "直線一口氣",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 2.07
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": true,
+                    "upperSkillName": "逼近的身影"
+                }
+            ]
+        },
+        {
+            "name": "打好基礎",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 100,
+                    "lengths": {
+                        "front_runner": 1.39,
+                        "middle_of_pack_f": 0.53,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "熟練轉換",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 1.55,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 0.458,
+                    "preSkill": true,
+                    "preSkillName": "居中超前姿勢",
+                    "preSkillCost": 180,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "居中超前姿勢",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 180,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 0,
+                        "middle_of_pack_b": 0.95,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 0.496,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": true,
+                    "upperSkillName": "熟練轉換"
+                }
+            ]
+        },
+        {
+            "name": "決心的直線滑下",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 120,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 1.4,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": true,
+                    "preSkillName": "直線滑下",
+                    "preSkillCost": 120,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "直線滑下",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 120,
+                    "lengths": {
+                        "front_runner": 0,
+                        "middle_of_pack_f": 1.09,
+                        "middle_of_pack_b": 0,
+                        "back_finisher": 0
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": true,
+                    "upperSkillName": "決心的直線滑下"
+                }
+            ]
+        },
+        {
+            "name": "不停頓女孩",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 150,
+                    "lengths": {
+                        "front_runner": 0.7,
+                        "middle_of_pack_f": 0.72,
+                        "middle_of_pack_b": 0.81,
+                        "back_finisher": 0.87
+                    },
+                    "exceptedValue": 0.233,
+                    "preSkill": true,
+                    "preSkillName": "避開力竭賽馬娘",
+                    "preSkillCost": 150,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "避開力竭賽馬娘",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 150,
+                    "lengths": {
+                        "front_runner": 0.47,
+                        "middle_of_pack_f": 0.49,
+                        "middle_of_pack_b": 0.53,
+                        "back_finisher": 0.58
+                    },
+                    "exceptedValue": 0.251,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": true,
+                    "upperSkillName": "不停頓女孩"
+                }
+            ]
+        },
+        {
+            "name": "快如陣風",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 170,
+                    "lengths": {
+                        "front_runner": 0.62,
+                        "middle_of_pack_f": 0.65,
+                        "middle_of_pack_b": 0.68,
+                        "back_finisher": 0.71
+                    },
+                    "exceptedValue": 0.163,
+                    "preSkill": true,
+                    "preSkillName": "直線加速",
+                    "preSkillCost": 170,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        },
+        {
+            "name": "直線加速",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 170,
+                    "lengths": {
+                        "front_runner": 0.37,
+                        "middle_of_pack_f": 0.38,
+                        "middle_of_pack_b": 0.4,
+                        "back_finisher": 0.41
+                    },
+                    "exceptedValue": 0.204,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": true,
+                    "upperSkillName": "快如陣風"
+                }
+            ]
+        },
+        {
+            "name": "登山家",
+            "info": [
+                {
+                    "name": "",
+                    "cost": 160,
+                    "lengths": {
+                        "front_runner": 0.2,
+                        "middle_of_pack_f": 0.2,
+                        "middle_of_pack_b": 0.18,
+                        "back_finisher": 0.19
+                    },
+                    "exceptedValue": 1,
+                    "preSkill": false,
+                    "preSkillName": "",
+                    "preSkillCost": 0,
+                    "upperSkill": false,
+                    "upperSkillName": ""
+                }
+            ]
+        }
     ]
 }

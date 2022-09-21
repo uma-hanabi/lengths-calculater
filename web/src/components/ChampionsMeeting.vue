@@ -171,7 +171,7 @@ export default {
       showDismissibleAlert: false,
       picked: true,
       runStyle: "",
-      currentChampionship: "Taurus",
+      currentChampionship: "Gemini",
       totalSkillPoint: "",
       skillName: "",
       upperSkillName: "",
