@@ -5,12 +5,25 @@
   </b-alert>
   <main class="mt-3">
     <el-form class="elform" ref="form" label-width="auto" >
-        <el-form-item label="杯賽">
+        <el-form-item :required="true">
+          <span slot="label">
+            杯賽
+            <el-tooltip style="display: inline-block;;" class="item" content="選擇杯賽" placement="bottom-end">
+              <i class="el-icon-arrow-right"/>
+            </el-tooltip>
+          </span>
           <el-select v-model="currentChampionship" style="width:100%;" collapse-tags placeholder="choose champtionship meeting" filterable @input="syncSkillList(currentChampionship)">
               <el-option v-for="item in champtionshipList" :value="item.key" :key="item.key" :label="item.zhtw"/>
           </el-select>
         </el-form-item>
-        <el-form-item label="腳質">
+
+        <el-form-item :required="true">
+          <span slot="label">
+            腳質
+            <el-tooltip style="display: inline-block;;" class="item" content="請選擇腳質" placement="bottom-end">
+              <i class="el-icon-arrow-right"/>
+            </el-tooltip>
+          </span>
           <el-button :type="btnGroupState1 === true?'danger':'primary'" :checked="picked" round size="mini" @click="syncRunStyle('front_runner', 1)">
             領頭
           </el-button>
@@ -24,56 +37,123 @@
             後追
           </el-button>
         </el-form-item>
-        <el-form-item label="持有PT">
-          <el-input id="total_skill_pt" type="text" placeholder="Add total skill points" autofocus ref="addskill" v-model="totalSkillPoint"
+
+        <el-form-item :required="false">
+          <span slot="label">
+            選項
+            <el-tooltip style="display: inline-block;;" class="item" content="根據自身需求勾選即可" placement="bottom-end">
+              <i class="el-icon-arrow-right"/>
+            </el-tooltip>
+          </span>
+          <el-checkbox style="display: inline-block" v-model="talentGiftedChecked" @change="syncTalentGiftedCheckBox(talentGiftedChecked)">
+            天賦異稟
+            <el-tooltip style="display: inline-block;;" class="item" content="所有技能pt 9 折" placement="bottom-end">
+              <i class="el-icon-question"/>
+            </el-tooltip>
+          </el-checkbox>
+          <el-checkbox style="display: inline-block" v-model="exceptedValueChecked" @change="syncExceptedValueCheckBox(exceptedValueChecked)">
+            考慮有效率
+            <el-tooltip style="display: inline-block;" class="item" content="計算技能發動後的實際有效率期望值" placement="bottom-end">
+              <i class="el-icon-question"/>
+            </el-tooltip>
+          </el-checkbox>
+          <el-checkbox style="display: inline-block" v-model="wisdomChecked" @change="syncWisdomCheckBox(wisdomChecked)">
+            考慮智力
+            <el-tooltip style="display: inline-block;" class="item" content="考慮智力會影響技能發動率，若勾選考慮智力，需要額外輸入當前智力" placement="bottom-end">
+              <i class="el-icon-question"/>
+            </el-tooltip>
+          </el-checkbox>
+        </el-form-item>
+
+        <el-form-item v-if="wisdomChecked === true" :required="true">
+          <span slot="label">
+            智力
+            <el-tooltip style="display: inline-block;;" class="item" content="請輸入智力" placement="bottom-end">
+              <i class="el-icon-arrow-right"/>
+            </el-tooltip>
+          </span>
+          <el-input id="wisdom" type="text" placeholder="1~2000" autofocus ref="addskill" v-model="wisdomValue"
+            @input="wisdomValue=syncWisdom(wisdomValue)"
+          />
+        </el-form-item>
+
+        <el-form-item :required="true">
+          <span slot="label">
+            持有PT
+            <el-tooltip style="display: inline-block;;" class="item" content="建議先將必點的技能如金回點掉再輸入" placement="bottom-end">
+              <i class="el-icon-arrow-right"/>
+            </el-tooltip>
+          </span>
+          <el-input id="total_skill_pt" type="text" placeholder="輸入目前剩餘的技能點數" autofocus ref="addskill" v-model="totalSkillPoint"
             @input="totalSkillPoint=onlyNumber(totalSkillPoint)"
           />
         </el-form-item>
-        <el-form-item label="技能名稱">
-            <el-select v-model="skillName" style="width:100%;" collapse-tags placeholder="choose skill" filterable @input="syncSkillInfo(skillName)">
+
+        <el-form-item :required="true">
+          <span slot="label">
+            技能名稱
+            <el-tooltip style="display: inline-block;;" class="item" content="下拉後可打字搜尋" placement="bottom-end">
+              <i class="el-icon-arrow-right"/>
+            </el-tooltip>
+          </span>
+            <el-select v-model="skillName" style="width:100%;" collapse-tags placeholder="選擇技能" filterable @input="syncSkillInfo(skillName)">
                 <el-option v-for="item in skillListShow" :value="item.name" :key="item.name" :label="item.name"/>
             </el-select>
         </el-form-item>
-        <el-form-item :style="skillHasPreSkill==true?'display: inline-block;width:50%':'width:100%'" label="技能折扣(%)">
-            <el-select v-model="skillDiscount" style="width:100%;" collapse-tags placeholder="choose skill discount" @input="updateSkillCost()">
+
+        <el-form-item :style="skillHasPreSkill==true?'display: inline-block;width:50%':'width:100%'" :required="false">
+          <span slot="label">
+            技能折扣(%)
+            <el-tooltip style="display: inline-block;;" class="item" content="若為金技，需要額外選擇前置白技折扣" placement="bottom-end">
+              <i class="el-icon-arrow-right"/>
+            </el-tooltip>
+          </span>
+            <el-select v-model="skillDiscount" style="width:100%;" collapse-tags placeholder="選擇技能折扣" @input="updateSkillCost()">
                 <el-option v-for="item in skillDiscountList" :value="item" :key="item"/>
             </el-select>
         </el-form-item>
         <el-form-item style="display: inline-block;width:50%;" v-if="skillHasPreSkill==true" label="前置折扣(%)">
-            <el-select v-model="preSkillDiscount" style="width:100%;" collapse-tags placeholder="choose skill discount" @input="updateSkillCost()">
+            <el-select v-model="preSkillDiscount" style="width:100%;" collapse-tags placeholder="選擇前置白技能折扣" @input="updateSkillCost()">
                 <el-option v-for="item in skillDiscountList" :value="item" :key="item"/>
             </el-select>
         </el-form-item>
-        <el-form-item label="技能消耗PT">
+
+        <el-form-item :required="false">
+          <span slot="label">
+            技能消耗PT
+            <el-tooltip style="display: inline-block;;" class="item" content="顯示當前技能的消耗pt" placement="bottom-end">
+              <i class="el-icon-arrow-right"/>
+            </el-tooltip>
+          </span>
           <span v-if="skillName != ''" style="display: inline-block;width:30%;" class="el-form-item__content">{{ skillCostShow }}</span>
           <span v-else style="display: inline-block;width:30%;" class="el-form-item__content">{{ skillCostShow }}</span>
-          <el-checkbox style="display: inline-block" v-model="talentGiftedChecked" @change="syncTalentGiftedCheckBox(talentGiftedChecked)">
-            天賦異稟
-            <el-tooltip style="display: inline-block;;" class="item" content="所有技能pt 9 折" placement="right-start">
-              <i class="el-icon-question"/>
-            </el-tooltip>
-          </el-checkbox>
         </el-form-item>
-        <el-form-item label="技能身距">
+
+        <el-form-item :required="false">
+          <span slot="label">
+            技能身距
+            <el-tooltip style="display: inline-block;;" class="item" content="顯示當前技能造成的身距" placement="bottom-end">
+              <i class="el-icon-arrow-right"/>
+            </el-tooltip>
+          </span>
           <span style="display: inline-block;width:30%;" class="el-form-item__content">{{ skillLengths }}</span>
-          <el-checkbox style="display: inline-block" v-model="exceptedValueChecked" @change="syncExceptedValueCheckBox(exceptedValueChecked)">
-            考慮有效率
-            <el-tooltip style="display: inline-block;" class="item" content="計算技能發動的期望值" placement="right-start">
-              <i class="el-icon-question"/>
-            </el-tooltip>
-          </el-checkbox>
         </el-form-item>
+
     </el-form>
+
     <div>
       <el-button style="width:100px;height:30px;" class="button" @click="addItem">新增</el-button>
       <el-button style="width:100px;height:30px;" class="submitButton" v-on:click="calculateLengths()">計算</el-button>
     </div>
+
     <br/>
     <hr/>
+
     <div>
       <label style="width:10%" class="el-input">目前技能</label>
       <el-button class="button" style="display: inline-block;" @click="removeItem('all')">重置</el-button>
     </div>
+
     <div>
       <el-table :data="items" style="display: inline-block;width:100%;" class="table_bsm" label="123">
         <el-table-column prop="name" label="技能名稱">
@@ -103,8 +183,10 @@
         </el-table-column>
       </el-table>
     </div>
+
     <br/>
     <hr v-if="items.length > 0"/>
+
     <label v-if="result.length > 0" class="el-input">最大馬身技能({{ maxLengths }})</label>
     <div>
       <el-table v-if="result.length > 0" :data="result" style="display: inline-block;width:100%;" class="table_bsm">
@@ -125,29 +207,7 @@
         </el-table-column>
       </el-table>
     </div>
-    <!-- <ul class="max-w-xs">
-      <span v-if="items.length > 0" >目前技能</span>
-      <li v-for="(item, index) in items" class="my-4 flex items-left justify-end" :key='index'>
-        <span v-if="! item.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black" @click="enableEdit(index)">{{ item.name }},</span>
-        <input v-else type="text" v-model="item.name" :ref="'skill'" @keyup.enter="disableEdit(index)"  class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white">
-        <span v-if="! item.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black" @click="enableEdit(index)">{{ item.cost }},</span>
-        <input v-else type="text" v-on:input="item.cost=onlyNumber(item.cost)" v-model="item.cost" :ref="'skill'" @keyup.enter="disableEdit(index)"  class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white">
-        <span v-if="! item.edit" class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black" @click="enableEdit(index)">{{ item.lengths }}</span>
-        <input v-else type="text" v-on:input="item.lengths=onlyNumber(item.lengths)" v-model="item.lengths" :ref="'skill'" @keyup.enter="disableEdit(index)"  class="px-2 py-1 mr-2 w-40 border-black border-transparent focus:border-black border-solid border-2 focus:bg-white">
-        <el-button v-if="! item.edit" class="button" @click="enableEdit(index)">編輯</el-button>
-        <el-button v-else class="button" @click="disableEdit(index)">更新</el-button>
-        <el-button class="button" @click="removeItem(index)">刪除</el-button>
-      </li>
-    </ul>
 
-    <ul class="max-w-xs">
-    <span v-if="result.length > 0" >最大馬身: {{ maxLengths }}</span>
-      <li v-for="(item, index) in result" class="my-4 flex result-right justify-end" :key='index'>
-        <span class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ item.name }},</span>
-        <span class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ item.cost }},</span>
-        <span class="px-2 py-1 mr-2 w-40 border-transparent border-solid border-2 hover:border-black">{{ item.lengths }}</span>
-      </li>
-    </ul> -->
   </main>
 
   <div class="flex items-center bg-blue-500 text-white text-sm font-bold px-4 py-3 mt-12" role="alert">
@@ -166,6 +226,8 @@ export default {
     return {
       talentGiftedChecked: false,
       exceptedValueChecked: false,
+      wisdomChecked: false,
+      wisdomValue: "",
       skillHasPreSkill: false,
       alertMessage: "",
       showDismissibleAlert: false,
@@ -179,7 +241,7 @@ export default {
       preSkillCost: 0,
       skillCostShow: 0,
       skillLengths: 0,
-      skillLengthsBias: 1,
+      skillCostBias: 1,
       skillExceptedValue: 1,
       skillDiscount: 0,
       preSkillDiscount: 0,
@@ -201,9 +263,9 @@ export default {
     this.syncSkillList(this.currentChampionship)
   },
   methods: {
-    syncTotalPT: function(pt) {
+    syncNumber: function(num) {
       let that = this
-      if (pt != "") {
+      if (num != "") {
         that.hideAlert()
       }
     },
@@ -215,6 +277,12 @@ export default {
     },
     syncExceptedValueCheckBox: function(value) {
       this.exceptedValueChecked = value
+      if (this.skillName != "") {
+        this.syncSkillInfo(this.skillName)
+      }
+    },
+    syncWisdomCheckBox: function(value) {
+      this.wisdomChecked = value
       if (this.skillName != "") {
         this.syncSkillInfo(this.skillName)
       }
@@ -256,7 +324,7 @@ export default {
               var preSkillCost = that.calculateCost(item.preSkillCost, that.preSkillDiscount)
               calculatedItemList.push({
                 name: skillInfo[0],
-                cost: Math.round((mainSkillCost + preSkillCost) * that.skillLengthsBias),
+                cost: Math.round((mainSkillCost + preSkillCost) * that.skillCostBias),
                 lengths: parseFloat(item.lengths * that.skillExceptedValue).toFixed(3),
                 edit: false
               });
@@ -370,7 +438,14 @@ export default {
     },
     onlyNumber: function(value) {
       var num = value.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')
-      this.syncTotalPT(num)
+      this.syncNumber(num)
+      return num
+    },
+    syncWisdom: function(value) {
+      var num = this.onlyNumber(value)
+      if (this.skillName != "" && num != "") {
+        this.syncSkillInfo(this.skillName)
+      }
       return num
     },
     setSkillCount: function() {
@@ -382,11 +457,17 @@ export default {
         var lengths = 0
         var ptBias = 1
         var lengthsBias = 1
+        var wisdomBias = 1
         var isTalentGifted = this.talentGiftedChecked
         var isCalculateExceptedValue = this.exceptedValueChecked
+        var isCalculateWisdomBiad = this.wisdomChecked
         let that = this
         if (that.runStyle == "" ) {
           that.showAlert("請先選擇腳質")
+          return
+        }
+        if (isCalculateWisdomBiad == true && that.wisdomValue == "") {
+          that.showAlert("請先輸入智力")
           return
         }
         if (isTalentGifted === true) {
@@ -402,6 +483,9 @@ export default {
                 mainSkillCost = mainSkillCost + item.cost
                 if (isCalculateExceptedValue === true) {
                   lengthsBias = item.skillExceptedValue
+                }
+                if (isCalculateWisdomBiad === true && item.isPassiveSkill !== true) {
+                  wisdomBias = parseFloat(1 - 9e1 / that.wisdomValue).toFixed(3)
                 }
                 if (item.preSkill === true) {
                   that.skillHasPreSkill = true
@@ -422,8 +506,8 @@ export default {
         this.skillCost = mainSkillCost * ptBias
         this.preSkillCost = preSkillCost * ptBias
         this.skillCostShow = (mainSkillCost + preSkillCost) * ptBias
-        this.skillLengthsBias = ptBias
-        this.skillLengths = parseFloat(lengths*lengthsBias).toFixed(3)
+        this.skillCostBias = ptBias
+        this.skillLengths = parseFloat(lengths * lengthsBias * wisdomBias).toFixed(3)
         this.skillDiscount = 0
     },
     resetSkillInfo: function() {
@@ -455,7 +539,8 @@ export default {
                 "preSkillName": skill.preSkillName,
                 "preSkillCost": skill.preSkillCost,
                 "upperSkill": skill.upperSkill,
-                "upperSkillName": skill.upperSkillName
+                "upperSkillName": skill.upperSkillName,
+                "isPassiveSkill": skill.isPassiveSkill
               }
               //console.log(tmpSkill)
               tmpSkills.push(tmpSkill)
